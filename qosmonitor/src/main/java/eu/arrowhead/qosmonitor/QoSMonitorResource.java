@@ -1,4 +1,4 @@
-package eu.arrowhead.qosmonitortest;
+package eu.arrowhead.qosmonitor;
 
 import com.google.gson.Gson;
 import eu.arrowhead.common.database.qos.AddLogForm;

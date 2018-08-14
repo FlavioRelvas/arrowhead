@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.arrowhead.qosmonitortest.common;
+package eu.arrowhead.qosmonitor.common;
 
 import eu.arrowhead.common.database.ArrowheadSystem;
 import java.util.Map;

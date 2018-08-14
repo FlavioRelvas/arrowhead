@@ -1,4 +1,4 @@
-package eu.arrowhead.qosmonitortest;
+package eu.arrowhead.qosmonitor;
 
 import eu.arrowhead.common.DatabaseManager;
 import eu.arrowhead.core.qos.monitor.registry.Register;

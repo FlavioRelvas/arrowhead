@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.arrowhead.qosmonitortest;
+package eu.arrowhead.qosmonitor;
 
 import eu.arrowhead.common.DatabaseManager;
 import eu.arrowhead.common.Utility;

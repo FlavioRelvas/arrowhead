@@ -7,7 +7,7 @@
  *  national funding authorities from involved countries.
  */
 
-package eu.arrowhead.qosmonitortest.common.filter;
+package eu.arrowhead.qosmonitor.common.filter;
 
 import eu.arrowhead.common.Utility;
 import eu.arrowhead.common.database.ServiceRegistryEntry;
