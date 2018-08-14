@@ -65,7 +65,7 @@ public class DriversFactory {
    * @throws DriverNotFoundException The selected type doesnt have an assigned driver.
    */
 
-  public Map<String, String> generateCommands(String communicationProtocol, Map<String, String> networkConfiguration, ArrowheadSystem provider,
+  public ReservationResponse generateCommands(String communicationProtocol, Map<String, String> networkConfiguration, ArrowheadSystem provider,
                                               ArrowheadSystem consumer, ArrowheadService service, Map<String, String> commands, Map<String, String>
                                                   requestedQoS)
       throws ReservationException, DriverNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {
@@ -76,21 +76,21 @@ public class DriversFactory {
     // Method Invoking
     Method method = findMethod(cls);
 
-    Map<String, String> streamConfiguration = (Map<String, String>) method.
+    ReservationResponse rr = (ReservationResponse) method.
                                                                               invoke(obj, new ReservationInfo(networkConfiguration, provider, consumer, service, commands, requestedQoS));
 
-    if (streamConfiguration == null) {
+    if (rr == null) {
       throw new ReservationException();
     }
 
-    return streamConfiguration;
+    return rr;
 
   }
 
   public Class findClass(String communicationProtocol) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
     // Class Invoking
     Class cls;
-    cls = Class.forName("eu.arrowhead.qos.communication.drivers." + communicationProtocol.toUpperCase());
+    cls = Class.forName("eu.arrowhead.qos.drivers.implementations." + communicationProtocol.toUpperCase());
     return cls;
   }
 

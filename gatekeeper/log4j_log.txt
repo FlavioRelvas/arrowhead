@@ -1,0 +1,19 @@
+2018-08-09 16:10:14, com.zaxxer.hikari.HikariDataSource, INFO, Gatekeeper - Starting...
+2018-08-09 16:10:14, com.zaxxer.hikari.pool.PoolBase, INFO, Gatekeeper - Driver does not support get/set network timeout for connections. (com.mysql.jdbc.JDBC4Connection.getNetworkTimeout()I)
+2018-08-09 16:10:14, com.zaxxer.hikari.HikariDataSource, INFO, Gatekeeper - Start completed.
+2018-08-09 16:10:15, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8446
+2018-08-09 16:10:15, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8448
+2018-08-09 16:10:15, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8442/serviceregistry
+2018-08-09 16:10:15, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8440/orchestrator/orchestration
+2018-08-09 16:10:16, eu.arrowhead.core.gatekeeper.GatekeeperMain, INFO, Started inbound server at: http://0.0.0.0:8446
+2018-08-09 16:10:16, eu.arrowhead.core.gatekeeper.GatekeeperMain, INFO, Started outbound server at: http://0.0.0.0:8448
+2018-08-09 16:10:16, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8442/serviceregistry/register
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, ERROR, Request returned with DUPLICATE_ENTRY: There is already an entry in the database with these parameters. Please check the unique fields of the class eu.arrowhead.common.database.ServiceRegistryEntry
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, INFO, Sending PUT request to: http://0.0.0.0:8442/serviceregistry/remove
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8442/serviceregistry/register
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8442/serviceregistry/register
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, ERROR, Request returned with DUPLICATE_ENTRY: There is already an entry in the database with these parameters. Please check the unique fields of the class eu.arrowhead.common.database.ServiceRegistryEntry
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, INFO, Sending PUT request to: http://0.0.0.0:8442/serviceregistry/remove
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8442/serviceregistry/register
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, INFO, Sending PUT request to: http://0.0.0.0:8442/serviceregistry/query
+2018-08-09 16:10:17, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8444/authorization

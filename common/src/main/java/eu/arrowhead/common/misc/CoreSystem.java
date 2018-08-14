@@ -30,7 +30,7 @@ public enum CoreSystem {
   GATEWAY(8452, 8453, null, Arrays.asList("keystore", "keystorepass", "keypass", "truststore", "truststorepass", "trustpass", "master_arrowhead_cert"),
           Arrays.asList(CoreSystemService.GW_PROVIDER_SERVICE, CoreSystemService.GW_CONSUMER_SERVICE, CoreSystemService.GW_SESSION_MGMT)),
   ORCHESTRATOR(8440, 8441, ArrowheadMain.dbFields, ArrowheadMain.certFields, Collections.singletonList(CoreSystemService.ORCH_SERVICE)),
-  QOS(8450, 8451, Arrays.asList("db_user", "db_password", "db_address", "monitor_url"), ArrowheadMain.certFields, null),
+  QOS_MANAGER(8450, 8451, Arrays.asList("db_user", "db_password", "db_address", "monitor_url"), ArrowheadMain.certFields, Arrays.asList(CoreSystemService.QOS_MANAGER)),
   SERVICE_REGISTRY_DNS(8442, 8443, null, ArrowheadMain.certFields, null),
   SERVICE_REGISTRY_SQL(8442, 8443, ArrowheadMain.dbFields, ArrowheadMain.certFields, null);
 

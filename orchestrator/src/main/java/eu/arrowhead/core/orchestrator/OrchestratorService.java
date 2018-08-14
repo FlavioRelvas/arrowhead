@@ -96,9 +96,9 @@ final class OrchestratorService {
         srList = OrchestratorDriver.removeNonPreferred(srList, providerSystems);
       }
 
-      //placeholder step
+      //returns only the providers that pass the requested parameters
       if (orchestrationFlags.get("enableQoS")) {
-        srList = OrchestratorDriver.doQoSVerification(srList);
+                srList = OrchestratorDriver.doQoSVerification(srList, srf.getRequesterSystem(), srf.getRequestedQoS());
       }
 
       // If matchmaking is requested, we pick out 1 ServiceRegistryEntry entity from the list. Preferred Systems (2nd arg) have higher priority
@@ -108,9 +108,9 @@ final class OrchestratorService {
         srList.add(entry);
       }
 
-      //placeholder step
+      //returns the chosen provider if the reservation was sucessful else return an empty list
       if (orchestrationFlags.get("enableQoS")) {
-        srList = OrchestratorDriver.doQosReservation(srList);
+        srList = OrchestratorDriver.doQosReservation(srList, srf.getRequesterSystem(),srf.getRequestedQoS(),srf.getCommands());
       }
 
       // All the filtering is done, need to compile the response

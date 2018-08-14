@@ -154,7 +154,7 @@ public class ServiceRequestForm extends ArrowheadBase {
         mf.add("There is no valid PreferredProvider, but \"onlyPreferred\" is set to true");
       }
     }
-    if (orchestrationFlags.get("enableQoS") && (requestedQoS.isEmpty() || commands.isEmpty())) {
+    if (orchestrationFlags.get("enableQoS") && (requestedQoS.isEmpty() && commands.isEmpty())) {
       mf.add("RequestedQoS or commands hashmap is empty while \"enableQoS\" is set to true");
     }
 

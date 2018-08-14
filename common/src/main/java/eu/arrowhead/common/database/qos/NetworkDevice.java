@@ -26,6 +26,8 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "network_device", uniqueConstraints = {@UniqueConstraint(columnNames = {"mac_address"})})
@@ -43,6 +45,7 @@ public class NetworkDevice {
   private String macAddress;
 
   @ElementCollection(fetch = FetchType.LAZY)
+  @LazyCollection(LazyCollectionOption.FALSE)
   @MapKeyColumn(name = "capability_key")
   @Column(name = "capability_value")
   @CollectionTable(name = "network_device_network_capabilities", joinColumns = @JoinColumn(name = "id"))

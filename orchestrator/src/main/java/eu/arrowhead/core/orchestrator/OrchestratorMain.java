@@ -27,6 +27,7 @@ public class OrchestratorMain extends ArrowheadMain {
   static String TOKEN_GEN_URI;
   static String GSD_SERVICE_URI;
   static String ICN_SERVICE_URI;
+  static String QOS_MANAGER_URI;
 
   private OrchestratorMain(String[] args) {
     Set<Class<?>> classes = new HashSet<>(Arrays.asList(OrchestratorResource.class, OldOrchResource.class));
@@ -62,6 +63,7 @@ public class OrchestratorMain extends ArrowheadMain {
       GSD_SERVICE_URI = Utility.getServiceInfo(CoreSystemService.GSD_SERVICE.getServiceDef())[0];
       ICN_SERVICE_URI = Utility.getServiceInfo(CoreSystemService.ICN_SERVICE.getServiceDef())[0];
     }
+    QOS_MANAGER_URI = Utility.getServiceInfo(CoreSystemService.QOS_MANAGER.getServiceDef())[0];
     System.out.println("Core system URLs acquired.");
   }
 

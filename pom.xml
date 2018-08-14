@@ -26,6 +26,7 @@
     <module>gateway</module>
     <module>orchestrator</module>
     <module>qos</module>
+    <module>qosmonitor</module>
     <module>serviceregistry</module>
     <module>serviceregistry_sql</module>
   </modules>

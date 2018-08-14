@@ -19,6 +19,7 @@
  */
 package eu.arrowhead.qos.algorithms.implementations;
 
+import eu.arrowhead.common.messages.QoSVerifierResponse;
 import eu.arrowhead.qos.algorithms.IVerifierAlgorithm;
 import eu.arrowhead.qos.algorithms.VerificationInfo;
 import eu.arrowhead.qos.algorithms.VerificationResponse;
@@ -33,8 +34,8 @@ public class FTTSE implements IVerifierAlgorithm {
 
 
   @Override
-  public VerificationResponse verifyQoS(VerificationInfo info) {
-    return new VerificationResponse(true, null);
+  public QoSVerifierResponse verifyQoS(VerificationInfo info) {
+    return new QoSVerifierResponse(true, null);
   }
 
 }

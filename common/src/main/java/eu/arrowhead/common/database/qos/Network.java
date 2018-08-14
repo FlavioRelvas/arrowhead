@@ -24,6 +24,8 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "network", uniqueConstraints = {@UniqueConstraint(columnNames = {"network_name"})})
@@ -44,6 +46,7 @@ public class Network {
   private String networkType;
 
   @ElementCollection(fetch = FetchType.LAZY)
+  @LazyCollection(LazyCollectionOption.FALSE)
   @MapKeyColumn(name = "config_key")
   @Column(name = "config_value")
   @CollectionTable(name = "network_config_map", joinColumns = @JoinColumn(name = "id"))

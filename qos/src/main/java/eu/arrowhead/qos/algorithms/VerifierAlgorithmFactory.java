@@ -7,7 +7,7 @@
  *  national funding authorities from involved countries.
  */
 
-/* This Source Code Form is subject to the terms of the Mozilla Public
+ /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  *
@@ -28,40 +28,39 @@ import java.util.Map;
 
 public class VerifierAlgorithmFactory {
 
-  private static VerifierAlgorithmFactory instance;
+    private static VerifierAlgorithmFactory instance;
 
-  private Class[] paramVerificationInfo = new Class[1];
+    private Class[] paramVerificationInfo = new Class[1];
 
-  private VerifierAlgorithmFactory() {
-    //VerificationInfo parameter
-    paramVerificationInfo[0] = VerificationInfo.class;
-  }
-
-  public static VerifierAlgorithmFactory getInstance() {
-    if (instance == null) {
-      instance = new VerifierAlgorithmFactory();
+    private VerifierAlgorithmFactory() {
+        //VerificationInfo parameter
+        paramVerificationInfo[0] = VerificationInfo.class;
     }
-    return instance;
-  }
 
-  // Cause I think using interfaces and enums would be more clean and faster at runtime
-  // Or if we keep this reflection pattern, than catch and handle the exceptions here in this method!
-  //note: communicationProtocol == network.getNetworkType :/
+    public static VerifierAlgorithmFactory getInstance() {
+        if (instance == null) {
+            instance = new VerifierAlgorithmFactory();
+        }
+        return instance;
+    }
 
-  public QoSVerifierResponse verify(String communicationProtocol, Map<String, String> providerDeviceCapabilities, Map<String, String> consumerDeviceCapabilities, List<ResourceReservation> providerDeviceQoSReservations,
-                                    List<ResourceReservation> consumerDeviceQoSReservations, Map<String, String> requestedQoS, Map<String, String> commands)
-      throws InstantiationException, ClassNotFoundException, IllegalAccessException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {
-    Class cls;
+    // Cause I think using interfaces and enums would be more clean and faster at runtime
+    // Or if we keep this reflection pattern, than catch and handle the exceptions here in this method!
+    //note: communicationProtocol == network.getNetworkType :/
+    public QoSVerifierResponse verify(String communicationProtocol, Map<String, String> providerDeviceCapabilities, Map<String, String> consumerDeviceCapabilities, List<ResourceReservation> providerDeviceQoSReservations,
+            List<ResourceReservation> consumerDeviceQoSReservations, Map<String, String> requestedQoS, Map<String, String> commands)
+            throws InstantiationException, ClassNotFoundException, IllegalAccessException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {
+        Class cls;
 
-    // Class Invoking
-    cls = Class.forName("eu.arrowhead.qos.algorithms.implementations." + communicationProtocol.toUpperCase());
-    Object obj = cls.newInstance();
-    // Method Invoking
-    Method method = cls.getDeclaredMethod("verifyQoS", paramVerificationInfo);
-    return (QoSVerifierResponse) method.
-                                           invoke(obj, new VerificationInfo(providerDeviceCapabilities, consumerDeviceCapabilities, providerDeviceQoSReservations,
-                                                                            consumerDeviceQoSReservations, requestedQoS, commands));
+        // Class Invoking
+        cls = Class.forName("eu.arrowhead.qos.algorithms.implementations." + communicationProtocol.toUpperCase());
+        Object obj = cls.newInstance();
+        // Method Invoking
+        Method method = cls.getDeclaredMethod("verifyQoS", paramVerificationInfo);
+        return (QoSVerifierResponse) method.
+                invoke(obj, new VerificationInfo(providerDeviceCapabilities, consumerDeviceCapabilities, providerDeviceQoSReservations,
+                        consumerDeviceQoSReservations, requestedQoS, commands));
 
-  }
+    }
 
 }

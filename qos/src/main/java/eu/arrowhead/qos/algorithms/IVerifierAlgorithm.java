@@ -19,6 +19,8 @@
  */
 package eu.arrowhead.qos.algorithms;
 
+import eu.arrowhead.common.messages.QoSVerifierResponse;
+
 public interface IVerifierAlgorithm {
 
   /**
@@ -28,6 +30,6 @@ public interface IVerifierAlgorithm {
    *
    * @return Returns true or false with a rejetction motivation.
    */
-  VerificationResponse verifyQoS(VerificationInfo info);
+    QoSVerifierResponse verifyQoS(VerificationInfo info);
 
 }
