@@ -2,8 +2,10 @@ package eu.arrowhead.qosmonitor;
 
 import com.google.gson.Gson;
 import eu.arrowhead.common.database.qos.AddLogForm;
+import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -83,6 +85,14 @@ public class QoSMonitorResource {
                     .build();
         }
         return Response.ok("OK").build();
+    }
+
+    @POST
+    @Path("feedback")
+    public Response receiveEvent(Map<String, Boolean> results) {
+        System.out.println("Event publishing results:");
+        System.out.println(results.toString());
+        return Response.ok().build();
     }
 
 //    @POST
