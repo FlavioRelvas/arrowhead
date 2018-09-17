@@ -1,0 +1,87 @@
+2018-09-17 18:07:37, com.zaxxer.hikari.HikariDataSource, INFO, EventHandler - Starting...
+2018-09-17 18:07:37, com.zaxxer.hikari.pool.PoolBase, INFO, EventHandler - Driver does not support get/set network timeout for connections. (com.mysql.jdbc.JDBC4Connection.getNetworkTimeout()I)
+2018-09-17 18:07:37, com.zaxxer.hikari.HikariDataSource, INFO, EventHandler - Start completed.
+2018-09-17 18:07:38, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8454
+2018-09-17 18:07:38, eu.arrowhead.common.ArrowheadMain, INFO, Started server at: http://0.0.0.0:8454
+2018-09-17 18:07:38, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8442/serviceregistry
+2018-09-17 18:07:38, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8442/serviceregistry/register
+2018-09-17 18:07:39, eu.arrowhead.common.Utility, ERROR, Request returned with DUPLICATE_ENTRY: There is already an entry in the database with these parameters. Please check the unique fields of the class eu.arrowhead.common.database.ServiceRegistryEntry
+2018-09-17 18:07:39, eu.arrowhead.common.Utility, INFO, Sending PUT request to: http://0.0.0.0:8442/serviceregistry/remove
+2018-09-17 18:07:39, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8442/serviceregistry/register
+2018-09-17 18:07:39, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8442/serviceregistry/register
+2018-09-17 18:07:39, eu.arrowhead.common.Utility, ERROR, Request returned with DUPLICATE_ENTRY: There is already an entry in the database with these parameters. Please check the unique fields of the class eu.arrowhead.common.database.ServiceRegistryEntry
+2018-09-17 18:07:39, eu.arrowhead.common.Utility, INFO, Sending PUT request to: http://0.0.0.0:8442/serviceregistry/remove
+2018-09-17 18:07:39, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8442/serviceregistry/register
+2018-09-17 18:07:42, eu.arrowhead.core.eventhandler.EventHandlerService, INFO, Event published to 0 subscribers.
+2018-09-17 18:07:43, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:07:43, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:07:43, eu.arrowhead.common.Utility, ERROR, Unknown reason for RuntimeException at the sendRequest() method.
+2018-09-17 18:07:43, eu.arrowhead.common.Utility, INFO, Request failed, response status code: 415
+2018-09-17 18:07:43, eu.arrowhead.common.Utility, INFO, Request failed, response body: {
+  "in" : {
+    "lock" : { },
+    "delegate" : { }
+  },
+  "closed" : false
+}
+2018-09-17 18:07:43, eu.arrowhead.core.eventhandler.EventHandlerResource, ERROR, Callback after event publishing failed at: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:08:39, eu.arrowhead.core.eventhandler.EventHandlerService, INFO, Consumer System InsecureSubscriber was not in the database, saving it now.
+2018-09-17 18:08:39, eu.arrowhead.core.eventhandler.EventHandlerResource, INFO, EventFilter was saved.
+2018-09-17 18:08:39, eu.arrowhead.core.eventhandler.EventHandlerResource, INFO, EventFilter was saved.
+2018-09-17 18:08:43, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8464/notify
+2018-09-17 18:08:43, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8464/notify
+2018-09-17 18:08:43, eu.arrowhead.core.eventhandler.EventHandlerService, INFO, Event published to 1 subscribers.
+2018-09-17 18:08:43, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8462/publisher/feedback
+2018-09-17 18:08:43, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8462/publisher/feedback
+2018-09-17 18:10:18, eu.arrowhead.core.eventhandler.EventHandlerResource, INFO, EventFilter was already in the database, nothing happened.
+2018-09-17 18:10:18, eu.arrowhead.core.eventhandler.EventHandlerResource, INFO, EventFilter was already in the database, nothing happened.
+2018-09-17 18:10:20, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8464/notify
+2018-09-17 18:10:20, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8464/notify
+2018-09-17 18:10:20, eu.arrowhead.core.eventhandler.EventHandlerService, INFO, Event published to 1 subscribers.
+2018-09-17 18:10:20, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:10:20, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:10:20, eu.arrowhead.common.Utility, ERROR, Unknown reason for RuntimeException at the sendRequest() method.
+2018-09-17 18:10:20, eu.arrowhead.common.Utility, INFO, Request failed, response status code: 415
+2018-09-17 18:10:20, eu.arrowhead.common.Utility, INFO, Request failed, response body: {
+  "in" : {
+    "lock" : { },
+    "delegate" : { }
+  },
+  "closed" : false
+}
+2018-09-17 18:10:20, eu.arrowhead.core.eventhandler.EventHandlerResource, ERROR, Callback after event publishing failed at: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:11:31, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8464/notify
+2018-09-17 18:11:31, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8464/notify
+2018-09-17 18:11:32, eu.arrowhead.core.eventhandler.EventHandlerService, INFO, Event published to 1 subscribers.
+2018-09-17 18:11:32, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:11:32, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:11:32, eu.arrowhead.common.Utility, ERROR, Unknown reason for RuntimeException at the sendRequest() method.
+2018-09-17 18:11:32, eu.arrowhead.common.Utility, INFO, Request failed, response status code: 415
+2018-09-17 18:11:32, eu.arrowhead.common.Utility, INFO, Request failed, response body: {
+  "in" : {
+    "lock" : { },
+    "delegate" : { }
+  },
+  "closed" : false
+}
+2018-09-17 18:11:32, eu.arrowhead.core.eventhandler.EventHandlerResource, ERROR, Callback after event publishing failed at: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:22:17, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8464/notify
+2018-09-17 18:22:17, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8464/notify
+2018-09-17 18:22:17, eu.arrowhead.core.eventhandler.EventHandlerService, INFO, Event published to 1 subscribers.
+2018-09-17 18:22:17, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:22:17, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:23:50, eu.arrowhead.core.eventhandler.EventHandlerResource, INFO, EventFilter was saved.
+2018-09-17 18:23:55, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8464/notify
+2018-09-17 18:23:55, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8488/qosmonitorclient
+2018-09-17 18:23:55, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8488/qosmonitorclient
+2018-09-17 18:23:55, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8464/notify
+2018-09-17 18:23:55, eu.arrowhead.core.eventhandler.EventHandlerService, INFO, Event published to 2 subscribers.
+2018-09-17 18:23:55, eu.arrowhead.common.Utility, INFO, Utility:getUri returning this: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:23:55, eu.arrowhead.common.Utility, INFO, Sending POST request to: http://0.0.0.0:8456/monitor/feedback
+2018-09-17 18:44:04, eu.arrowhead.core.eventhandler.EventHandlerResource, INFO, deleteEventFilter returned with status code: 200
+2018-09-17 18:44:11, eu.arrowhead.common.Utility, INFO, Sending PUT request to: http://0.0.0.0:8442/serviceregistry/remove
+2018-09-17 18:44:11, eu.arrowhead.common.Utility, INFO, Sending PUT request to: http://0.0.0.0:8442/serviceregistry/remove
+2018-09-17 18:44:11, com.zaxxer.hikari.HikariDataSource, WARN, The shutdown() method has been deprecated, please use the close() method instead
+2018-09-17 18:44:11, com.zaxxer.hikari.HikariDataSource, INFO, EventHandler - Shutdown initiated...
+2018-09-17 18:44:11, com.zaxxer.hikari.HikariDataSource, INFO, EventHandler - Shutdown completed.
+2018-09-17 18:44:11, eu.arrowhead.common.ArrowheadMain, INFO, Stopping server at: http://0.0.0.0:8454

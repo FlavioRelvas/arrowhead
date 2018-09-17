@@ -36,7 +36,7 @@ public class QoSMonitorService {
     private static final List<String> REGISTERED = new ArrayList();
     //FIXME only used in startService
     private final String MONITOR_REGISTRY_PACKAGE = "eu.arrowhead.core.qos.monitor.register.";
-    private static Properties prop;
+    private static Properties prop = getProp();
 
     /**
      * A new QoSMonitorService instance with a initialized MongoDatabaseManager
@@ -129,7 +129,7 @@ public class QoSMonitorService {
 
         
         //send to event handler
-        String systemName = prop.getProperty("system_name");
+        String systemName = prop.getProperty("system_name", "QoSMonitor");
         String address = prop.getProperty("address", "0.0.0.0");
         int insecurePort = Integer.parseInt(prop.getProperty("insecure_port", "8454"));
         int usedPort = insecurePort;
@@ -138,9 +138,9 @@ public class QoSMonitorService {
         String type = prop.getProperty("event_type");
         String payload = gson.toJson(message);//prop.getProperty("event_payload");
         
-        ArrowheadSystem source = new ArrowheadSystem(systemName, address, usedPort, "");
+        ArrowheadSystem source = new ArrowheadSystem(systemName, "0.0.0.0", 8456, "");
         Event event = new Event(type, payload, LocalDateTime.now(), null);
-        PublishEvent eventPublishing = new PublishEvent(source, event, "publisher/feedback");
+        PublishEvent eventPublishing = new PublishEvent(source, event, "monitor/feedback");
         Utility.sendRequest(ehUri, "POST", eventPublishing);
 
         if (!QoSVerifier.verify(message.getConsumer(), message.getProvider(), message.getParameters())) {

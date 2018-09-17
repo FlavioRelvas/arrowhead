@@ -2,6 +2,7 @@ package eu.arrowhead.qosmonitor;
 
 import com.google.gson.Gson;
 import eu.arrowhead.common.database.qos.AddLogForm;
+import java.util.HashMap;
 import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -89,10 +90,19 @@ public class QoSMonitorResource {
 
     @POST
     @Path("feedback")
-    public Response receiveEvent(Map<String, Boolean> results) {
-        System.out.println("Event publishing results:");
-        System.out.println(results.toString());
-        return Response.ok().build();
+    public Response receiveEvent(String message) {
+        try {
+            Gson gson = new Gson();
+            Map<String, Boolean> results = gson.fromJson(message, HashMap.class);
+            System.out.println("Event publishing results:");
+            System.out.println(results.toString());
+            return Response.ok().build();
+        } catch (IllegalAccessError ex) {
+            LOG.error(ex.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(ex.getMessage())
+                    .build();
+        }
     }
 
 //    @POST
