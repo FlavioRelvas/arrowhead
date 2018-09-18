@@ -126,23 +126,7 @@ public class QoSMonitorService {
         }
 
         dm.save(message);
-
         
-        //send to event handler
-        String systemName = prop.getProperty("system_name", "QoSMonitor");
-        String address = prop.getProperty("address", "0.0.0.0");
-        int insecurePort = Integer.parseInt(prop.getProperty("insecure_port", "8454"));
-        int usedPort = insecurePort;
-        
-        String ehUri = Utility.getUri(address, usedPort, "eventhandler/publish", false, false);
-        String type = prop.getProperty("event_type");
-        String payload = gson.toJson(message);//prop.getProperty("event_payload");
-        
-        ArrowheadSystem source = new ArrowheadSystem(systemName, "0.0.0.0", 8456, "");
-        Event event = new Event(type, payload, LocalDateTime.now(), null);
-        PublishEvent eventPublishing = new PublishEvent(source, event, "monitor/feedback");
-        Utility.sendRequest(ehUri, "POST", eventPublishing);
-
         if (!QoSVerifier.verify(message.getConsumer(), message.getProvider(), message.getParameters())) {
             System.out.println("Requested QoS parameters not being guaranteed");
         }

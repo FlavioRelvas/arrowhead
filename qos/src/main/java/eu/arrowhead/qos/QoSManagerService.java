@@ -20,7 +20,6 @@
 package eu.arrowhead.qos;
 
 import eu.arrowhead.common.DatabaseManager;
-import eu.arrowhead.common.Utility;
 import eu.arrowhead.common.database.ArrowheadSystem;
 import eu.arrowhead.common.database.qos.DeployedSystem;
 import eu.arrowhead.common.database.qos.MessageStream;
@@ -29,7 +28,6 @@ import eu.arrowhead.common.database.qos.NetworkDevice;
 import eu.arrowhead.common.database.qos.ResourceReservation;
 import eu.arrowhead.common.exception.DriverNotFoundException;
 import eu.arrowhead.common.exception.ReservationException;
-import eu.arrowhead.common.messages.MonitorRule;
 import eu.arrowhead.common.messages.QoSReservationCommand;
 import eu.arrowhead.common.messages.QoSReservationResponse;
 import eu.arrowhead.common.messages.QoSReserve;
@@ -43,8 +41,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status.Family;
 import org.apache.log4j.Logger;
 
 final class QoSManagerService {
@@ -175,9 +171,9 @@ final class QoSManagerService {
 
             restrictionMap.put("consumer", consumer);
             restrictionMap.put("provider", provider);
-            
+
             ResourceReservation current = dm.get(ResourceReservation.class, restrictionMap);
-            
+
             if (current == null) {
                 dm.save(reservation);
             } else {
@@ -196,6 +192,24 @@ final class QoSManagerService {
         return new QoSReservationResponse(false,
                 new QoSReservationCommand(message.getService(), message.getConsumer(), message.getProvider(), commands,
                         message.getRequestedQoS()));
+    }
+
+    public static boolean qosRelease(ArrowheadSystem consumer) {
+        if (consumer == null) {
+            return false;
+        }
+
+        Map<String, Object> restrictionMap = new HashMap();
+        restrictionMap.put("consumer", consumer);
+
+        List<ResourceReservation> rr = dm.getAll(ResourceReservation.class, restrictionMap);
+
+        for (ResourceReservation r : rr) {
+            r.setState("DOWN");
+            dm.save(r);
+        }
+
+        return true;
     }
 
 }

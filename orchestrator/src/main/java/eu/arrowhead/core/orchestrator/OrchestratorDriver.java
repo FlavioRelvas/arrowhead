@@ -219,16 +219,22 @@ final class OrchestratorDriver {
         //return only the list that passed those parameters
         Response r = Utility.sendRequest(uri, "PUT", qrf);
         QoSVerificationResponse qvr = r.readEntity(QoSVerificationResponse.class);
+        List<ServiceRegistryEntry> temp = new ArrayList<>();
         for (ArrowheadSystem key : qvr.getResponse().keySet()) {
-            if (!qvr.getResponse().get(key)) {
+            if (qvr.getResponse().get(key)) {
                 srList.forEach((sre) -> {
                     if (sre.getProvider().equals(key)) {
-                        srList.remove(sre);
+                        temp.add(sre);
                     }
                 });
             }
         }
-        return srList;
+
+        if (temp.isEmpty()) {
+            throw new DataNotFoundException("The requested QoS parameters cannot be ensured.",
+                    Status.NOT_FOUND.getStatusCode());
+        }
+        return temp;
     }
 
     /**
@@ -276,18 +282,22 @@ final class OrchestratorDriver {
     static List<ServiceRegistryEntry> doQosReservation(List<ServiceRegistryEntry> srList, ArrowheadSystem consumer, Map<String, String> requestedQoS, Map<String, String> commands) {
         //need to send a ReservationInfo instance to QoSManger's "reserve" endpoint
         String uri = UriBuilder.fromPath(OrchestratorMain.QOS_MANAGER_URI).path("reserve").toString();
+        if (!srList.isEmpty()) {
 
-        ArrowheadSystem provider = srList.get(0).getProvider();
-        ArrowheadService service = srList.get(0).getProvidedService();
+            ArrowheadSystem provider = srList.get(0).getProvider();
+            ArrowheadService service = srList.get(0).getProvidedService();
 
-        QoSReserve reservationInfo = new QoSReserve(provider, consumer, service, requestedQoS, commands);
-        System.out.println("Request to " + uri + " with payload: " + Utility.toPrettyJson(null, reservationInfo));
-        //Send payload and evaluate response
+            QoSReserve reservationInfo = new QoSReserve(provider, consumer, service, requestedQoS, commands);
+            System.out.println("Request to " + uri + " with payload: " + Utility.toPrettyJson(null, reservationInfo));
+            //Send payload and evaluate response
 
-        Response r = Utility.sendRequest(uri, "PUT", reservationInfo);
-        QoSReservationResponse qrr = r.readEntity(QoSReservationResponse.class);
-        if (!qrr.isSuccessfulReservation()) {
-            srList.remove(0);
+            Response r = Utility.sendRequest(uri, "PUT", reservationInfo);
+            QoSReservationResponse qrr = r.readEntity(QoSReservationResponse.class);
+            if (!qrr.isSuccessfulReservation()) {
+                srList.remove(0);
+                throw new DataNotFoundException("The requested QoS parameters cannot be reserved.",
+                        Status.NOT_FOUND.getStatusCode());
+            }
         }
         //return only the list that passed those parameters
         return srList;

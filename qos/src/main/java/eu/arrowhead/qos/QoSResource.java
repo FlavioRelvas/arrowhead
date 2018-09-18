@@ -19,6 +19,7 @@
  */
 package eu.arrowhead.qos;
 
+import eu.arrowhead.common.database.ArrowheadSystem;
 import eu.arrowhead.common.exception.DriverNotFoundException;
 import eu.arrowhead.common.exception.ReservationException;
 import eu.arrowhead.common.messages.QoSReservationResponse;
@@ -27,6 +28,7 @@ import eu.arrowhead.common.messages.QoSVerificationResponse;
 import eu.arrowhead.common.messages.QoSVerify;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -59,6 +61,18 @@ public class QoSResource {
 
     QoSReservationResponse qosrr = QoSManagerService.qosReserve(qosReservation);
     return Response.status(Status.OK).entity(qosrr).build();
+  }
+  
+  @POST
+  @Path("release")
+  public Response qosRelease(ArrowheadSystem consumer){
+      
+      boolean flag = QoSManagerService.qosRelease(consumer);
+      if(flag){
+          return Response.status(Status.OK).build();
+      }else{
+          return Response.status(Status.BAD_REQUEST).build();
+      }
   }
 
 }
