@@ -24,6 +24,7 @@ import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collections;
@@ -62,10 +63,12 @@ public class QoSMonitorMain {
     private static final String BASE_URI_SECURED = getProp().getProperty("base_uri_secured", "https://localhost:8455/");
     private static final Logger log = Logger.getLogger(QoSMonitorMain.class.getName());
 
+    public static Map<String, LocalDateTime> m = new HashMap<>();
+
     public static void main(String[] args) throws IOException {
         PropertyConfigurator.configure("config" + File.separator + "log4j.properties");
         System.out.println("Working directory: " + System.getProperty("user.dir"));
-        
+
         if (!SR_BASE_URI.contains("serviceregistry")) {
             SR_BASE_URI = UriBuilder.fromUri(SR_BASE_URI).path("serviceregistry").build().toString();
         }

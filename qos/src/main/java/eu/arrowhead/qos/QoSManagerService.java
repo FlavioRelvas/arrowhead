@@ -122,11 +122,7 @@ final class QoSManagerService {
         restrictionMap.clear();
         restrictionMap.put("consumer", retrievedSystem);
         restrictionMap.put("provider", retrievedSystem);
-        List<MessageStream> messageStreams = dm.getAllOfEither(MessageStream.class, restrictionMap);
-        List<ResourceReservation> reservations = new ArrayList<>();
-        for (MessageStream ms : messageStreams) {
-            reservations.add(ms.getQualityOfService());
-        }
+        List<ResourceReservation> reservations = dm.getAllOfEither(ResourceReservation.class, restrictionMap);
 
         return reservations;
     }
@@ -205,6 +201,7 @@ final class QoSManagerService {
         List<ResourceReservation> rr = dm.getAll(ResourceReservation.class, restrictionMap);
 
         for (ResourceReservation r : rr) {
+            dm.delete(r);
             r.setState("DOWN");
             dm.save(r);
         }

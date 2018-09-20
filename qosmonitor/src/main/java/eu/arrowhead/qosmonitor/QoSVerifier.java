@@ -27,6 +27,7 @@ public class QoSVerifier {
 
     protected static final TypeSafeProperties props = Utility.getProp("app.properties");
 
+    private static final int EVENT_DELAY = 15;
     private static final DatabaseManager dm = DatabaseManager.getInstance();
 
     public static boolean verify(ArrowheadSystem consumer, ArrowheadSystem provider, Map<String, String> parameters) {
@@ -57,7 +58,17 @@ public class QoSVerifier {
                                         + "\n\tbandwidth: " + br + "\n}"
                                         + "\nObservedParameters: {"
                                         + "\n\tbandwidth: " + bo + "\n}";
-                                publishEvent(payload);
+                                String s = consumer.getSystemName() + "-" + provider.getSystemName();
+                                if (QoSMonitorMain.m.containsKey(s)) {
+                                    LocalDateTime dt = QoSMonitorMain.m.get(s);
+                                    if (dt.plusSeconds(EVENT_DELAY).isBefore(LocalDateTime.now())) {
+                                        publishEvent(payload);
+                                        QoSMonitorMain.m.put(s, LocalDateTime.now());
+                                    }
+                                } else {
+                                    publishEvent(payload);
+                                    QoSMonitorMain.m.put(s, LocalDateTime.now());
+                                }
                                 return false;
                             }
                             break;
