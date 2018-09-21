@@ -2,17 +2,14 @@ package eu.arrowhead.qosmonitor;
 
 import com.google.gson.Gson;
 import eu.arrowhead.common.DatabaseManager;
-import eu.arrowhead.common.Utility;
-import eu.arrowhead.common.database.ArrowheadSystem;
 import eu.arrowhead.core.qos.monitor.registry.Register;
 import eu.arrowhead.common.database.qos.AddLogForm;
-import eu.arrowhead.common.messages.Event;
-import eu.arrowhead.common.messages.PublishEvent;
 import java.io.File;
 import java.io.FileInputStream;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -126,10 +123,8 @@ public class QoSMonitorService {
         }
 
         dm.save(message);
-        
-        if (!QoSVerifier.verify(message.getConsumer(), message.getProvider(), message.getParameters())) {
-            System.out.println("Requested QoS parameters not being guaranteed");
-        }
+        QoSMonitorMain.systemsMap.put(QoSMonitorMain.mapIndex, message);
+        QoSMonitorMain.mapIndex = QoSMonitorMain.mapIndex + 1;
 
 //        SLAVerification verification = new SLAVerification(monitor, rule, log);
 //        EXEC.execute(verification);

@@ -55,9 +55,9 @@ public class QoSVerifier {
                                         + "\n\taddress: " + provider.getAddress() + " "
                                         + "\n\tport: " + provider.getPort() + " \n}"
                                         + "\nRequestedParameters: {"
-                                        + "\n\tbandwidth: " + br + "\n}"
+                                        + "\n\tbandwidth: " + String.format("%.2f b/s", br) + "\n}"
                                         + "\nObservedParameters: {"
-                                        + "\n\tbandwidth: " + bo + "\n}";
+                                        + "\n\tbandwidth: " + String.format("%.2f b/s", bo) + "\n}";
                                 String s = consumer.getSystemName() + "-" + provider.getSystemName();
                                 if (QoSMonitorMain.m.containsKey(s)) {
                                     LocalDateTime dt = QoSMonitorMain.m.get(s);
@@ -98,13 +98,13 @@ public class QoSVerifier {
                 bandwidth = 0.0f;
                 break;
             case 'm':
-                bandwidth = Float.valueOf(number);
+                bandwidth = Float.valueOf(number) * 1024 * 1024;
                 break;
             case 'k':
-                bandwidth = Float.valueOf(number) / 1024;
+                bandwidth = Float.valueOf(number) * 1024;
                 break;
             case 'b':
-                bandwidth = Float.valueOf(number) / 1024 / 1024;
+                bandwidth = Float.valueOf(number);
                 break;
 
         }

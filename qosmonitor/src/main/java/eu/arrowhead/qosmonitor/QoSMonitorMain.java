@@ -9,6 +9,7 @@ import eu.arrowhead.common.Utility;
 import eu.arrowhead.common.database.ArrowheadService;
 import eu.arrowhead.common.database.ArrowheadSystem;
 import eu.arrowhead.common.database.ServiceRegistryEntry;
+import eu.arrowhead.common.database.qos.AddLogForm;
 import eu.arrowhead.common.exception.ArrowheadException;
 import eu.arrowhead.common.exception.AuthException;
 import eu.arrowhead.common.exception.ExceptionType;
@@ -32,6 +33,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.net.ssl.SSLContext;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -64,6 +67,9 @@ public class QoSMonitorMain {
     private static final Logger log = Logger.getLogger(QoSMonitorMain.class.getName());
 
     public static Map<String, LocalDateTime> m = new HashMap<>();
+    public static Map<Integer, AddLogForm> systemsMap = new HashMap<>();
+    public static Integer mapIndex = new Integer(0);
+    protected static final int TIMER_INTERVAL = Integer.parseInt(getProp().getProperty("timer_interval", "15"));
 
     public static void main(String[] args) throws IOException {
         PropertyConfigurator.configure("config" + File.separator + "log4j.properties");
@@ -109,6 +115,10 @@ public class QoSMonitorMain {
         }
 
         List<ServiceRegistryEntry> registeredEntries = registerToServiceRegistry();
+
+        TimerTask timerTask = new QoSverifierTimer();
+        Timer timer = new Timer(true);
+        timer.scheduleAtFixedRate(timerTask, 0, TIMER_INTERVAL * 1000);
 
         if (daemon) {
             System.out.println("In daemon mode, process will terminate for TERM signal...");
