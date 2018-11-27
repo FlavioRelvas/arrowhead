@@ -1,3 +1,15 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, you can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * This work was partially supported by National Funds through FCT/MCTES (Portuguese Foundation
+ * for Science and Technology), within the CISTER Research Unit (CEC/04234) and also by
+ * Grant nr. 737459 Call H2020-ECSEL-2016-2-IA-two-stage 
+ * ISEP/CISTER, Polytechnic Institute of Porto.
+ * Luis Lino Ferreira (llf@isep.ipp.pt), Flávio Relvas (flaviofrelvas@gmail.com),
+ * Michele Albano (mialb@isep.ipp.pt), Rafael Teles Da Rocha (rtdrh@isep.ipp.pt)
+ */
 package eu.arrowhead.qosmonitor;
 
 import com.google.gson.Gson;
@@ -17,7 +29,7 @@ import org.apache.log4j.Logger;
 /**
  * Root resource (exposed at "monitor" path).
  *
- * @author Renato Ayres
+ * @author Renato Ayres & Flávio
  */
 @Path("monitor")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -41,30 +53,6 @@ public class QoSMonitorResource {
         return "Online.";
     }
 
-    /**
-     * Method handling HTTP GET requests in /online path. The returned object
-     * will be sent to the client as "application/json" media type.
-     *
-     * Used to load all configurations for the QoSMonitor service. Only needed
-     * for testing purposes.
-     *
-     * @return HTTP OK STATUS
-     */
-//    @GET
-//    @Path("reload")
-//   
-//    public Response startService() {
-//        monitor.startService();
-//        return Response.ok().build();
-//    }
-    /**
-     * @POST @Path("/Event") public Response sendEvent(EventMessage error) { try
-     * { monitor.sendEvent(error); } catch (InstantiationException |
-     * IllegalAccessException ex) { // FIXME LOG.error(ex.getMessage()); return
-     * Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-     * .entity(ex.getMessage()) .build(); } return Response.ok("OK").build(); }
-     *
-     */
     /**
      *
      * @param message
@@ -105,9 +93,4 @@ public class QoSMonitorResource {
         }
     }
 
-//    @POST
-//    @Path("qosrule")
-//    public Response addRule(MonitorRule rule) {
-//        return Response.ok("OK").build();
-//    }
 }
