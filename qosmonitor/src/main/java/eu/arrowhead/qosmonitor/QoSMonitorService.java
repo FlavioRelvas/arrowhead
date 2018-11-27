@@ -1,3 +1,15 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, you can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * This work was partially supported by National Funds through FCT/MCTES (Portuguese Foundation
+ * for Science and Technology), within the CISTER Research Unit (CEC/04234) and also by
+ * Grant nr. 737459 Call H2020-ECSEL-2016-2-IA-two-stage 
+ * ISEP/CISTER, Polytechnic Institute of Porto.
+ * Luis Lino Ferreira (llf@isep.ipp.pt), Flávio Relvas (flaviofrelvas@gmail.com),
+ * Michele Albano (mialb@isep.ipp.pt), Rafael Teles Da Rocha (rtdrh@isep.ipp.pt)
+ */
 package eu.arrowhead.qosmonitor;
 
 import com.google.gson.Gson;
@@ -18,7 +30,7 @@ import java.util.concurrent.Executors;
  * This is the QoSMonitor Service class. It takes care of all the aspects of the
  * QoSMonitor Service.
  *
- * @author Renato Ayres
+ * @author Renato Ayres & Flávio
  */
 public class QoSMonitorService {
 
@@ -41,80 +53,14 @@ public class QoSMonitorService {
      */
     public QoSMonitorService() {
     }
-//    /**
-//     * Returns an initialized instance of the MongoDatabaseManager class.
-//     *
-//     * @return MongoDatabaseManager static instance
-//     */
-//    public MongoDatabaseManager getDatabaseManager() {
-//        if (database == null) {
-//            database = new MongoDatabaseManager();
-//        }
-//        return database;
-//    }
-//    /**
-//     * Returns an initialized instance of the MongoDatabaseManager class.
-//     *
-//     * @return MongoDatabaseManager static instance
-//     */
-//    public MongoDatabaseManager getDatabaseManager() {
-//        if (database == null) {
-//            database = new MongoDatabaseManager();
-//        }
-//        return database;
-//    }
-//    /**
-//     * Returns an initialized instance of the MongoDatabaseManager class.
-//     *
-//     * @return MongoDatabaseManager static instance
-//     */
-//    public MongoDatabaseManager getDatabaseManager() {
-//        if (database == null) {
-//            database = new MongoDatabaseManager();
-//        }
-//        return database;
-//    }
 
     public void startService() {
         //Register QoSMonitor service in service registry
         //Service Registry
         Register register = new Register();
         register.registerAll();
-
-        // [PT] Starting MongoDB, loading EventProducer configurations and registering in EventHandler
-//        EventProducerConfig.loadConfigurations();
-//        new ProducerRegistry().registerAsProducer();
-//
-//        MongoDatabaseManager.getInstance().startManager();
     }
 
-    /**
-     * Intermediates between message and monitor type.
-     *
-     * @param message EventMessage message
-     * @throws java.lang.InstantiationException
-     * @throws java.lang.IllegalAccessException
-     *
-     * public void sendEvent(EventMessage message) throws
-     * InstantiationException, IllegalAccessException {
-     *
-     * if (message.getParameters().isEmpty()) { //throw new
-     * NoMonitorParametersException("No parameters found in service error
-     * message!"); }
-     *
-     * IProtocol monitor = null; try { monitor =
-     * getMonitorClass(message.getProtocol()); } catch (ClassNotFoundException
-     * ex) { String excMessage = "Type " + message.getProtocol() + " not found.
-     * Make " + "sure you have the right monitor type for your " + "situation
-     * and that it's available in this version " + "and/or not misspelled.";
-     * //log.error(excMessage); // throw new
-     * InvalidMonitorTypeException(excMessage); }
-     *
-     * Event event = monitor.createEvent(message);
-     *
-     * // EventProducer producer = new EventProducer(event); //
-     * producer.publishEvent(); }
-     */
     public void newLog(AddLogForm message) {
         Gson gson = new Gson();
         if (message.getParameters().isEmpty()) {
@@ -126,10 +72,6 @@ public class QoSMonitorService {
         QoSMonitorMain.systemsMap.put(QoSMonitorMain.mapIndex, message);
         QoSMonitorMain.mapIndex = QoSMonitorMain.mapIndex + 1;
 
-//        SLAVerification verification = new SLAVerification(monitor, rule, log);
-//        EXEC.execute(verification);
-        //MongoDatabaseManager.getInstance().newLog(message, System.currentTimeMillis());
-        //QoSMonitorService.log.info(String.format("Executing SLAVerification [SEPARATE THREAD]"));
     }
 
     private static synchronized Properties getProp() {
